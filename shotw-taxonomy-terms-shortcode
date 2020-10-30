@@ -1,0 +1,26 @@
+<?php
+  //Create shortcode show category
+  function category_shortcode(){
+
+$siteurl = home_url('/');
+$tax = 'tipologia-servizi';  // slug of taxonomy
+$terms = get_terms($tax);
+foreach ($terms as $term) {
+    $id = $term->term_id;
+    $slug = $term->slug;
+    $description = $term->description;
+    $image_url = z_taxonomy_image_url( $id, NULL, TRUE );
+    $link = "<a href='$siteurl?$tax=$slug' ><h1> $term->name </h1></a>";
+
+    echo $link;
+    echo '<p>' . $description . '</p>';
+    echo '<img src="' . $image_url . '">';
+}
+
+
+}
+
+  add_shortcode ('category_shortcode', 'category_shortcode');
+
+
+  ?>
